@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Lunéclat RP</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://okami79370-stack.github.io/Luneclat-loading/loading.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Georgia, serif;
+    color: white;
+}
+
+#container {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+}
+
+#title {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+#bar {
+    width: 40%;
+    height: 12px;
+    background: rgba(255,255,255,0.25);
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, gold, white);
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+    <div id="title">Entrée dans l’Académie de Lunéclat…</div>
+    <div id="bar"><div id="fill"></div></div>
+</div>
+
+<script>
+let percent = 0;
+
+setInterval(() => {
+    if (percent < 95) {
+        percent += Math.random() * 2;
+        document.getElementById("fill").style.width = percent + "%";
+    }
+}, 80);
+</script>
+
+</body>
+</html>
