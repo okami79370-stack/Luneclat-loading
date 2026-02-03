@@ -5,27 +5,33 @@
 <title>Lunéclat RP</title>
 
 <style>
+/* Base */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #111;
+    background-color: #0b0b0f;
     font-family: Georgia, serif;
-    color: white;
+    color: #ffffff;
+    overflow: hidden;
 }
 
-#bg {
+/* Image de fond (chargée après le HTML) */
+#background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("https://okami79370-stack.github.io/Luneclat-loading/loading.jpg") center center no-repeat;
+    background-image: url("https://okami79370-stack.github.io/Luneclat-loading/loading.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: cover;
     z-index: -1;
 }
 
+/* Contenu central */
 #container {
     position: absolute;
     top: 45%;
@@ -33,39 +39,49 @@ html, body {
     text-align: center;
 }
 
+/* Titre */
 #title {
     font-size: 32px;
     letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
+/* Barre */
 #bar {
     width: 40%;
     height: 12px;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.25);
     margin: 20px auto;
     border-radius: 20px;
     overflow: hidden;
 }
 
+/* Remplissage */
 #fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, gold, white);
+    background: linear-gradient(90deg, #d4af37, #ffffff);
 }
 </style>
 </head>
 
 <body>
 
-<div id="bg"></div>
+<!-- Fond -->
+<div id="background"></div>
 
+<!-- Texte + barre -->
 <div id="container">
     <div id="title">Entrée dans l’Académie de Lunéclat…</div>
-    <div id="bar"><div id="fill"></div></div>
+    <div id="bar">
+        <div id="fill"></div>
+    </div>
 </div>
 
 <script>
+/* Barre de chargement FAKE (limite à 95%) */
 let percent = 0;
+
 setInterval(() => {
     if (percent < 95) {
         percent += Math.random() * 1.5;
