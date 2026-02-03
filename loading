@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Lunéclat RP</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Cinzel", serif;
+}
+
+body {
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 25, 0.55);
+}
+
+#title {
+    position: absolute;
+    top: 8%;
+    width: 100%;
+    text-align: center;
+    color: #f5f0dc;
+    font-size: 52px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #000;
+}
+
+#subtitle {
+    position: absolute;
+    top: 16%;
+    width: 100%;
+    text-align: center;
+    color: #d6cfae;
+    font-size: 20px;
+}
+
+#bar-container {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 12px;
+    background: rgba(0,0,0,0.4);
+}
+
+#bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d4af37, #f6e27a);
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+#percent {
+    position: absolute;
+    bottom: 23%;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+#tips {
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+<div id="overlay"></div>
+
+<div id="title">LUNÉCLAT RP</div>
+<div id="subtitle">Académie de Sorcellerie</div>
+
+<div id="bar-container">
+    <div id="bar"></div>
+</div>
+
+<div id="percent">Chargement : 0%</div>
+<div id="tips">La magie observe ceux qui entrent…</div>
+
+<audio id="music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let progress = 0;
+const bar = document.getElementById("bar");
+const percentText = document.getElementById("percent");
+
+/*
+ GMod NE DONNE PAS le vrai % exact.
+ On simule intelligemment (comme 99% des serveurs RP)
+*/
+const fakeLoading = setInterval(() => {
+    if (progress < 95) {
+        progress += Math.random() * 2;
+        bar.style.width = progress + "%";
+        percentText.innerText = "Chargement : " + Math.floor(progress) + "%";
+    }
+}, 500);
+
+</script>
+</body>
+</html>
