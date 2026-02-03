@@ -10,13 +10,20 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    background-image: url("https://okami79370-stack.github.io/Luneclat-loading/loading.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background-color: #111;
     font-family: Georgia, serif;
     color: white;
+}
+
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://okami79370-stack.github.io/Luneclat-loading/loading.jpg") center center no-repeat;
+    background-size: cover;
+    z-index: -1;
 }
 
 #container {
@@ -34,7 +41,7 @@ html, body {
 #bar {
     width: 40%;
     height: 12px;
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.3);
     margin: 20px auto;
     border-radius: 20px;
     overflow: hidden;
@@ -50,6 +57,8 @@ html, body {
 
 <body>
 
+<div id="bg"></div>
+
 <div id="container">
     <div id="title">Entrée dans l’Académie de Lunéclat…</div>
     <div id="bar"><div id="fill"></div></div>
@@ -57,13 +66,12 @@ html, body {
 
 <script>
 let percent = 0;
-
 setInterval(() => {
     if (percent < 95) {
-        percent += Math.random() * 2;
+        percent += Math.random() * 1.5;
         document.getElementById("fill").style.width = percent + "%";
     }
-}, 80);
+}, 100);
 </script>
 
 </body>
