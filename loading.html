@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Lunéclat RP</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: url("background.png") no-repeat center center fixed;
+    background-size: cover;
+    font-family: serif;
+    color: white;
+}
+
+#loading {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+#bar {
+    width: 40%;
+    height: 10px;
+    background: rgba(255,255,255,0.2);
+    margin: 20px auto;
+}
+
+#fill {
+    height: 100%;
+    width: 0%;
+    background: gold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">
+    Entrée dans l’Académie de Lunéclat…
+    <div id="bar"><div id="fill"></div></div>
+</div>
+
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let percent = 0;
+setInterval(() => {
+    percent = Math.min(percent + 1, 100);
+    document.getElementById("fill").style.width = percent + "%";
+}, 100);
+</script>
+
+</body>
+</html>
