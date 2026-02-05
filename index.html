@@ -2,92 +2,118 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Lunéclat RP</title>
+<title>Lunéclat RP — Chargement</title>
 
 <style>
-/* Base */
-html, body {
+/* ===== Base ===== */
+body {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0b0b0f;
-    font-family: Georgia, serif;
-    color: #ffffff;
+    background: url("loading.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #cce6ff;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     overflow: hidden;
 }
 
-/* Image de fond (chargée après le HTML) */
-#background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("https://okami79370-stack.github.io/Luneclat-loading/loading.jpg");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    z-index: -1;
+/* Voile sombre pour lisibilité */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 20, 0.55);
 }
 
-/* Contenu central */
-#container {
-    position: absolute;
-    top: 45%;
-    width: 100%;
+/* Contenu */
+.container {
+    position: relative;
+    z-index: 2;
     text-align: center;
 }
 
-/* Titre */
-#title {
-    font-size: 32px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px #5bbcff;
 }
 
-/* Barre */
-#bar {
-    width: 40%;
-    height: 12px;
-    background: rgba(255,255,255,0.25);
-    margin: 20px auto;
+p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Barre magique */
+.barre {
+    width: 420px;
+    height: 22px;
     border-radius: 20px;
+    background: rgba(255,255,255,0.15);
     overflow: hidden;
+    box-shadow: 0 0 25px #3fa9f5;
 }
 
-/* Remplissage */
-#fill {
+.progress {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #d4af37, #ffffff);
+    background: linear-gradient(
+        90deg,
+        #3fa9f5,
+        #7fdbff,
+        #3fa9f5
+    );
+    animation: charge 6s infinite;
+    border-radius: 20px;
+    box-shadow: 0 0 15px #7fdbff;
+}
+
+@keyframes charge {
+    0%   { width: 0%; }
+    50%  { width: 100%; }
+    100% { width: 0%; }
+}
+
+/* Particules magiques */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #7fdbff;
+    border-radius: 50%;
+    animation: float 4s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0%   { transform: translateY(0); opacity: 0; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(-220px); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
+<div class="overlay"></div>
 
-<!-- Fond -->
-<div id="background"></div>
+<div class="container">
+    <h1>✨ Lunéclat RP ✨</h1>
+    <p>Canalisation de la magie…</p>
 
-<!-- Texte + barre -->
-<div id="container">
-    <div id="title">Entrée dans l’Académie de Lunéclat…</div>
-    <div id="bar">
-        <div id="fill"></div>
+    <div class="barre">
+        <div class="progress"></div>
     </div>
 </div>
 
 <script>
-/* Barre de chargement FAKE (limite à 95%) */
-let percent = 0;
-
-setInterval(() => {
-    if (percent < 95) {
-        percent += Math.random() * 1.5;
-        document.getElementById("fill").style.width = percent + "%";
-    }
-}, 100);
+for (let i = 0; i < 25; i++) {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.top = (window.innerHeight - 30) + "px";
+    s.style.animationDelay = Math.random() * 4 + "s";
+    document.body.appendChild(s);
+}
 </script>
 
 </body>
